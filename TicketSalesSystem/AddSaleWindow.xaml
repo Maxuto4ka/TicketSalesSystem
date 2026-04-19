@@ -1,0 +1,52 @@
+﻿<Window x:Class="TicketSalesSystem.AddSaleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicketSalesSystem"
+        mc:Ignorable="d"
+        Title="AddSaleWindow" Height="450" Width="400">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Event:"/>
+        <ComboBox x:Name="EventBox" Grid.Column="1"/>
+
+        <TextBlock Text="Manager:" Grid.Row="1"/>
+        <ComboBox x:Name="ManagerBox" Grid.Row="1" Grid.Column="1"/>
+
+        <TextBlock Text="Client:" Grid.Row="2"/>
+        <ComboBox x:Name="ClientBox" Grid.Row="2" Grid.Column="1"/>
+
+        <TextBlock Text="Quantity:" Grid.Row="3"/>
+        <TextBox x:Name="QuantityBox" Grid.Row="3" Grid.Column="1" TextChanged="QuantityBox_TextChanged"/>
+
+        <TextBlock Text="Row:" Grid.Row="4"/>
+        <TextBox x:Name="RowBox" Grid.Row="4" Grid.Column="1"/>
+
+        <TextBlock Text="Seat:" Grid.Row="5"/>
+        <TextBox x:Name="SeatBox" Grid.Row="5" Grid.Column="1"/>
+        
+        <TextBlock Text="Total:" Grid.Row="6"/>
+        <TextBlock x:Name="TotalLabel" Grid.Row="6" Grid.Column="1" FontWeight="Bold"/>
+
+        <Button Content="Add Sale"
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                Margin="0,20,0,0"
+                Click="AddSale_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,225 @@
+﻿<Window x:Class="TicketSalesSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:TicketSalesSystem"
+        mc:Ignorable="d"
+        Title="Ticket Sales Window" Height="620" Width="1100">
+    <TabControl>
+        <TabItem Header="Sales (OLTP)">
+            <Grid>
+                <DataGrid x:Name="salesGrid"
+              HorizontalAlignment="Left"
+              Height="250"
+              Margin="10"
+              VerticalAlignment="Top"
+              Width="1000"/>
+
+                <Button Content="Load Sales"
+            HorizontalAlignment="Left"
+            Margin="10,280,0,0"
+            VerticalAlignment="Top"
+            Width="120"
+            Click="LoadSales_Click"/>
+
+                <Button Content="Add Sale"
+            HorizontalAlignment="Left"
+            Margin="150,280,0,0"
+            VerticalAlignment="Top"
+            Width="120"
+            Click="AddSale_Click"/>
+
+                <Button Content="Delete Sale"
+            HorizontalAlignment="Left"
+            Margin="290,280,0,0"
+            VerticalAlignment="Top"
+            Width="120"
+            Click="DeleteSale_Click"/>
+
+                <Button Content="Edit Sale"
+            HorizontalAlignment="Left"
+            Margin="430,280,0,0"
+            VerticalAlignment="Top"
+            Width="120"
+            Click="EditSale_Click"/>
+
+                <Button Content="Transfer to Warehouse"
+            HorizontalAlignment="Left"
+            Margin="570,280,0,0"
+            VerticalAlignment="Top"
+            Width="180"
+            Click="Transfer_Click"/>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Analytics">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ComboBox x:Name="analyticsComboBox"
+                  SelectionChanged="analyticsComboBox_SelectionChanged"
+                  Margin="0,0,0,10"/>
+
+                <StackPanel x:Name="filtersPanel"
+                    Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10"
+                    Visibility="Collapsed">
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Рік"/>
+                        <ComboBox x:Name="yearCombo" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Місяць"/>
+                        <ComboBox x:Name="monthCombo" Width="120"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Тип заходу"/>
+                        <ComboBox x:Name="typeCombo" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="cityPanel" Margin="5">
+                        <TextBlock Text="Місто"/>
+                        <ComboBox x:Name="cityCombo" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="managerPanel" Margin="5" Visibility="Collapsed">
+                        <TextBlock Text="Менеджер"/>
+                        <ComboBox x:Name="managerCombo" Width="150"/>
+                    </StackPanel>
+
+                    <Button Content="Фільтр"
+                        Click="Filter_Click"
+                        Margin="10,20,5,0"/>
+                </StackPanel>
+                <TextBlock x:Name="totalText"
+                   Grid.Row="2"
+                   FontWeight="Bold"
+                   Margin="5"/>
+                <DataGrid x:Name="analyticsGrid"
+                  Grid.Row="3"
+                  AutoGenerateColumns="True"/>
+            </Grid>
+
+        </TabItem>
+        <TabItem Header="Charts">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Оберіть діаграму: " VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="chartSelector" Width="300" SelectionChanged="ChartSelector_SelectionChanged">
+                        <ComboBoxItem Content="Динаміка продажів у часі (Лінійна)"/>
+                        <ComboBoxItem Content="Виручка за місяцями (Гістограма)"/>
+                        <ComboBoxItem Content="Частка продажів за типами заходів (Кругова)"/>
+                        <ComboBoxItem Content="Продажі по менеджерах (Стовпчикова)"/>
+                        <ComboBoxItem Content="Частка повернених квитків (Кругова)"/>
+                        <ComboBoxItem Content="Популярність заходів (Стовпчикова)"/>
+                        <ComboBoxItem Content="Топ міст за виручкою (Горизонтальна)"/>
+                    </ComboBox>
+                    <TextBlock Text="Рік: " VerticalAlignment="Center" Margin="20,0,10,0"/>
+                    <ComboBox x:Name="chartYearFilter" Width="100" SelectionChanged="ChartSelector_SelectionChanged">
+                        <ComboBoxItem Content="Всі роки" IsSelected="True"/>
+                        <ComboBoxItem Content="2024"/>
+                        <ComboBoxItem Content="2025"/>
+                        <ComboBoxItem Content="2026"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <Grid Grid.Row="1">
+                    <lvc:CartesianChart x:Name="cartesianChart" Visibility="Collapsed" LegendLocation="Bottom">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis x:Name="sharedAxisX"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis x:Name="sharedAxisY"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <lvc:PieChart x:Name="pieChart" Visibility="Collapsed" LegendLocation="Right" InnerRadius="40"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="About">
+            <Grid Background="#F9F9F9">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <Border x:Name="PhotoCircle"
+                    Width="200" 
+                    Height="200" 
+                    CornerRadius="100" 
+                    BorderBrush="#2196F3" 
+                    BorderThickness="3" 
+                    Margin="0,0,0,15">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" Direction="0" ShadowDepth="3" Opacity="0.2"/>
+                        </Border.Effect>
+
+                        <Border.Background>
+                            <ImageBrush x:Name="AuthorPhotoBrush" 
+                                Stretch="UniformToFill" 
+                                AlignmentX="Center" 
+                                AlignmentY="Center" />
+                        </Border.Background>
+                    </Border>
+
+                    <Button Content="Змінити фото" 
+                    Width="130" 
+                    Height="30" 
+                    Margin="0,0,0,25" 
+                    Click="SelectPhoto_Click"
+                    Background="#2196F3" 
+                    Foreground="White" 
+                    FontWeight="SemiBold"
+                    Cursor="Hand">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <TextBlock Text="Автор програми" 
+                       FontSize="22" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       Foreground="#333"/>
+
+                    <TextBlock Text="Непочатов Максим" 
+                       FontSize="18" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,5" 
+                       Foreground="#555"/>
+
+                    <TextBlock Text="Студент групи: Інноваційні технології" 
+                       FontSize="14" 
+                       HorizontalAlignment="Center" 
+                       Foreground="#777"/>
+
+                    <TextBlock Text="Лабораторна робота з дисципліни &quot;Інформаційні системи та технології&quot;" 
+                       FontSize="13" 
+                       FontStyle="Italic" 
+                       Foreground="Gray" 
+                       Margin="0,30,0,0" 
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       MaxWidth="400"
+                       HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
