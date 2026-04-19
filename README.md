@@ -3,8 +3,6 @@
 
 Десктопний WPF-додаток для автоматизації обліку продажів квитків на культурно-масові заходи та глибокого багатовимірного аналізу даних (Business Intelligence). 
 
-<img width="1346" height="757" alt="Снимок экрана (92)" src="https://github.com/user-attachments/assets/bbf63f46-83dd-45c3-a22b-083a269e66cf" /><img width="1920" height="1028" alt="Снимок экрана (102)" src="https://github.com/user-attachments/assets/c4745cf2-37f3-4a47-abc9-1abbc29de580" />
-
 Він демонструє повний цикл роботи з даними: від операційного введення (OLTP) до міграції (ETL) та візуалізації у сховищі даних (OLAP).
 
 ## 🚀 Основні можливості
@@ -38,13 +36,10 @@
 
 ## 📸 Скріншоти
 
-*(Додайте сюди скріншоти вашої програми, щоб репозиторій виглядав привабливо)*
-
 | Операційні продажі (OLTP) | Аналітичні графіки (OLAP) |
 |:---:|:---:|
-| ![Sales Tab](link_to_image_1.png) | ![Charts Tab](link_to_image_2.png) |
-
-*(Щоб додати скріншот, просто перетягніть картинку у веб-редактор README на GitHub, і він сам згенерує посилання).*
+| ![Sales Tab](<img width="1346" height="757" alt="Снимок экрана (92)" src="https://github.com/user-attachments/assets/bbf63f46-83dd-45c3-a22b-083a269e66cf" />) | ![Charts Tab](<img width="1920" height="1028" alt="Снимок экрана (102)" src="https://github.com/user-attachments/assets/c4745cf2-37f3-4a47-abc9-1abbc29de580" />
+) |
 
 ## ⚙️ Встановлення та запуск
 
