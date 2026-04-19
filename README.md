@@ -38,8 +38,7 @@
 
 | Операційні продажі (OLTP) | Аналітичні графіки (OLAP) |
 |:---:|:---:|
-| ![Sales Tab](<img width="1346" height="757" alt="Снимок экрана (92)" src="https://github.com/user-attachments/assets/bbf63f46-83dd-45c3-a22b-083a269e66cf" />) | ![Charts Tab](<img width="1920" height="1028" alt="Снимок экрана (102)" src="https://github.com/user-attachments/assets/c4745cf2-37f3-4a47-abc9-1abbc29de580" />
-) |
+| ![Sales Tab]<img width="1346" height="757" alt="Снимок экрана (92)" src="https://github.com/user-attachments/assets/bbf63f46-83dd-45c3-a22b-083a269e66cf" /> | ![Charts Tab]<img width="1920" height="1028" alt="Снимок экрана (102)" src="https://github.com/user-attachments/assets/c4745cf2-37f3-4a47-abc9-1abbc29de580" /> |
 
 ## ⚙️ Встановлення та запуск
 
